@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}{{post.title_tag}}{% endblock %}
+
+
+{% block content %}
+<h1>{{post.title}}</h1>
+<small>Feito Por: {{post.author}} - {{post.post_date}}</small> - 
+{% if user.is_authenticated %}
+    {% if user.id == post.author.id %}
+        <small><a href="{% url 'update_post' post.pk %}"> (Editar) </a></small> 
+        <small><a href="{% url 'delete_post' post.pk %}"> (Deletar) </a></small>
+    {%endif%}
+{% endif %}
+<br>
+<hr>
+<br>
+<img src="{{post.header_image.url}}" alt="">
+ <br><br>
+{{post.body|safe}}
+
+<br>
+<a href="{% url 'home' %}" class="btn btn-secondary">Voltar</a>
+
+
+{% endblock %}

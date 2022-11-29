@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if user.is_authenticated %}
+<h1>Criar Categoria</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-secondary">Criar Categoria</button>
+</form>
+{% else %} 
+<h1>Você não tem permissão para utilizar essa pagina!</h1>
+{% endif %}
+
+{% endblock %}

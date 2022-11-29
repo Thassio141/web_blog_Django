@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block title %}Editar Post{% endblock %}
+{% block content %}
+{% if user.is_authenticated %}
+    {% if user.id == post.author.id %}
+        <h1>Editar Post</h1>
+        <div class="form-group">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.media }}
+                {{ form.as_p }}
+                <button class="btn btn-secondary">Salvar</button>
+            </form>
+        </div>
+    {% else %}
+        <h1>Você não pode editar essa post!</h1>
+    {% endif %}
+{% else %} 
+<h1>Você não tem permissão para utilizar essa pagina!</h1>
+{% endif %}
+
+{% endblock %}
